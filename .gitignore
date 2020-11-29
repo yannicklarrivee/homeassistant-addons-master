@@ -1,1 +1,2 @@
-rtl4332mqtt-interlogix-autodiscovery/sensors.json
+.gitignore
+rtl4332mqtt-interlogix-autodiscovery/*.yaml

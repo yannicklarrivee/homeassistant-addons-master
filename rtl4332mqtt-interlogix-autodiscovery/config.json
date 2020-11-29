@@ -17,10 +17,10 @@
   ],
   "options":
   {
-    "mqtt_host": "hassio.local",
+    "mqtt_host": "homeassistant",
     "mqtt_user": "",
     "mqtt_password": "",
-    "mqtt_topic": "homeassistant/sensor/currentcost",
+    "mqtt_topic": "rtl_433",
     "protocol": 100,
     "frequency": 319500000,
     "gain": 60,
