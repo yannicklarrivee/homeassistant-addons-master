@@ -50,4 +50,4 @@ ENV MQTT_USER="guest"
 ENV MQTT_PASS="guest"
 ENV MQTT_TOPIC="homeassistant/sensor/rtl433"
 
-CMD cd / && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl2mqtt.sh /rtl2mqtt.sh && chmod +x /rtl2mqtt.sh && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl_433_mqtt_hass.py /rtl_433_mqtt_hass.py && /rtl2mqtt.sh
+CMD ls config/rtl4332mqtt-interlogix-autodiscovery/ && cd / && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl2mqtt.sh /rtl2mqtt.sh && chmod +x /rtl2mqtt.sh && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl_433_mqtt_hass.py /rtl_433_mqtt_hass.py && /rtl2mqtt.sh
