@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # A simple script that will receive events from an RTL433 SDR and resend the data via MQTT
 
