@@ -1,4 +1,5 @@
-#!/bin/ash
+echo "In script!"
+#!/bin/sh
 
 # A simple script that will receive events from an RTL433 SDR and resend the data via MQTT
 
