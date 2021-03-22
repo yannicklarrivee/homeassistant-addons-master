@@ -183,4 +183,4 @@ echo "RTL_433 Frequency Offset =" $OFFSET
 
 #set -x  ## uncomment for MQTT logging...
 
-python3 -u /rtl_433_mqtt_hass.py & /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 1000k -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype][/id]"
+python3 -u /rtl_433_mqtt_hass.py & /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype][/id]"
