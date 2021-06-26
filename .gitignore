@@ -1,2 +1,5 @@
 .gitignore
 rtl4332mqtt-interlogix-autodiscovery/*.yaml
+dropbox-autodelete/.env
+dropbox-autodelete/test_data/options.json
+dropbox-autodelete/local_build_and_run.sh
