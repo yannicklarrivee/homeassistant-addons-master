@@ -1,6 +1,6 @@
 {
   "name": "tshark",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "slug": "tshark",
   "description": "Monitor network with tshark",
   "url": "https://github.com/yannicklarrivee/homeassistant-addons-master",
