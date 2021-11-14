@@ -6,7 +6,7 @@
   "url": "https://github.com/yannicklarrivee/homeassistant-addons-master",
   "startup": "once",
   "boot": "manual",
-  "map": ["config:rw", "ssl"],
+  "map": ["config:rw", "ssl","share"],
   "usb": true,
   "host_network": "true",
   "privileged": ["SYS_ADMIN"]
