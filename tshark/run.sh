@@ -16,8 +16,5 @@ echo "Network interface=" $INTERFACE
 echo "pcap file name=" $PCAP_FILE
 echo "Autostop condition=" $AUTOSTOP
 
-ip link show
-pwd
-#tshark -i $INTERFACE -f $FILTER -a $AUTOSTOP -w $PCAP_FILE --log-file output.log
-tshark -i $INTERFACE -a $AUTOSTOP -w $PCAP_FILE
-ls
+tshark -i $INTERFACE -f "${FILTER}" -a $AUTOSTOP -w $PCAP_FILE
+#tshark -i $INTERFACE -a $AUTOSTOP -w $PCAP_FILE
