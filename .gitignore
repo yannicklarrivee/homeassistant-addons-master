@@ -1,8 +1,0 @@
-.gitignore
-rtl4332mqtt-interlogix-autodiscovery/*.yaml
-dropbox-autodelete/.env
-dropbox-autodelete/test_data/*
-dropbox-autodelete/local_build_and_run.sh
-tshark/local_build_and_run.sh
-tshark/.env
-tshark/test_data/*
