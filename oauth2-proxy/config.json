@@ -1,6 +1,6 @@
 {
   "name": "oauth2-proxy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "slug": "oauth2-rpoxy",
   "description": "Start an oauth2-proxy for external authentication.",
   "url": "https://github.com/yannicklarrivee/homeassistant-addons-master",
@@ -24,7 +24,8 @@
     "clientsecret": "xxxxxxx",
     "emaildomain": "*",
     "cookiesecret": "xxxxxxx",
-    "callbackurl": "https://mycallbackurl.com/oauth2/callback"
+    "authenticatedemailsfile": "authenticated_emails.conf"
+
   },
   "schema":
   {
@@ -33,6 +34,7 @@
     "clientsecret": "str",
     "emaildomain": "str",
     "cookiesecret": "str",
-    "callbackurl": "str"
+    "callbackurl": "str",
+    "authenticatedemailsfile": "str"
    }
 }
