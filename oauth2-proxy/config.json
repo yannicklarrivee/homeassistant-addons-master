@@ -1,7 +1,7 @@
 {
   "name": "oauth2-proxy",
-  "version": "0.2.0",
-  "slug": "oauth2-rpoxy",
+  "version": "0.3.0",
+  "slug": "oauth2-proxy",
   "description": "Start an oauth2-proxy for external authentication.",
   "url": "https://github.com/yannicklarrivee/homeassistant-addons-master",
   "startup": "once",
