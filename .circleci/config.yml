@@ -15,6 +15,6 @@ workflows:
                 name: Do this after checkout
           before_build:
             - run:
-                command: echo "Change directory" & ls & cd dropbox-autodelete & pwd
+                command: echo "Change directory" & ls & cd $CIRCLE_WORKING_DIRECTORY/dropbox-autodelete & pwd
                 name: Change directory
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/dropbox-autodelete
