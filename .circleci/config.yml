@@ -18,4 +18,4 @@ workflows:
                 command: echo "Change directory" & ls & cd $CIRCLE_WORKING_DIRECTORY/dropbox-autodelete & pwd
                 name: Change directory
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/dropbox-autodelet
-          path: $CIRCLE_WORKING_DIRECTORY/dropbox-autodelete/Dockerfile
+          path: $CIRCLE_WORKING_DIRECTORY/dropbox-autodelete
