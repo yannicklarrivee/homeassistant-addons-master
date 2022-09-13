@@ -6,18 +6,6 @@ jobs:
     executor: docker/docker
     steps:
       - docker/publish:
-          after_build:
-            - run:
-                command: echo "Did this after the build"
-                name: Do this after the build
-          after_checkout:
-            - run:
-                command: echo "Did this after checkout"
-                name: Do this after checkout
-          before_build:
-            - run:
-                command: echo "Change directory" & cd dropbox-autodelete
-                name: Change directory
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/dropbox-autodelete    
 workflows:
   build-and-publish-addons-images:
