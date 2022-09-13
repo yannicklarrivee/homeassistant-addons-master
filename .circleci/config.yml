@@ -4,7 +4,7 @@ orbs:
 jobs:
   build-and-publish-dropbox-autodelete-image:
     executor:
-      docker
+      docker/docker
     steps:
       - docker/publish:
           after_build:
