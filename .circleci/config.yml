@@ -3,8 +3,7 @@ orbs:
   docker: circleci/docker@2.1.3
 jobs:
   build-and-publish-dropbox-autodelete-image:
-    executor:
-      docker/docker
+    executor: docker/docker
     steps:
       - docker/publish:
           after_build:
