@@ -11,7 +11,7 @@ workflows:
                 name: Do this after the build
           after_checkout:
             - run:
-                command: echo "Did this after checkout"
+                command: echo "Did this after checkout" & pwd & ls
                 name: Do this after checkout
           before_build:
             - run:
