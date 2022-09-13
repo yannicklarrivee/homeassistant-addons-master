@@ -19,3 +19,4 @@ workflows:
                 name: Change directory
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/dropbox-autodelete
           path: dropbox-autodelete
+          docker-context: dropbox-autodelete
