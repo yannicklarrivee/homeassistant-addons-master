@@ -18,7 +18,7 @@ orbs:
                   command: echo "Change directory" & cd dropbox-autodelete
                   name: Change directory
             image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/dropbox-autodelete    
-workflows:
-  build-and-publish-addons-images:
-    jobs:
-      - build-and-publish-dropbox-autodelete-image
+  workflows:
+    build-and-publish-addons-images:
+      jobs:
+        - build-and-publish-dropbox-autodelete-image
