@@ -5,6 +5,7 @@ workflows:
   build-and-publish-addons-images:
     jobs:
       - docker/publish:
+          name: Test
           image: $DOCKER_LOGIN/dropbox-autodelete
           path: dropbox-autodelete
           docker-context: dropbox-autodelete
