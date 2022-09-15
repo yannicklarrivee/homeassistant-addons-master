@@ -5,19 +5,22 @@ workflows:
   build-and-publish-addons-images:
     jobs:
       - docker/publish:
-          name: Test
+          name: Publish dropbox-autodelete addon
           image: $DOCKER_LOGIN/dropbox-autodelete
           path: dropbox-autodelete
           docker-context: dropbox-autodelete
       - docker/publish:
+          name: Publish oauth2-proxy addon
           image: $DOCKER_LOGIN/oauth2-proxy
           path: oauth2-proxy
           docker-context: oauth2-proxy
       - docker/publish:
+          name: Publish tshark addon
           image: $DOCKER_LOGIN/tshark
           path: tshark
           docker-context: tshark
       - docker/publish:
+          name: Publish rtl4332mqtt-interlogix-autodiscovery addon
           image: $DOCKER_LOGIN/rtl4332mqtt-interlogix-autodiscovery
           path: rtl4332mqtt-interlogix-autodiscovery
           docker-context: rtl4332mqtt-interlogix-autodiscovery
