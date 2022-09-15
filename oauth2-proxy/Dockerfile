@@ -22,7 +22,7 @@ COPY ./run.sh ./run.sh
 # Install tshark
 #
 RUN apk add --no-cache go
-RUN go get github.com/oauth2-proxy/oauth2-proxy/v7 && go clean --modcache
+RUN go install github.com/oauth2-proxy/oauth2-proxy/v7 && go clean --modcache
 #
 # Start monitoring and make output file available
 #
