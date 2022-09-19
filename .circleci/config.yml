@@ -24,3 +24,8 @@ workflows:
           image: $DOCKER_LOGIN/rtl4332mqtt-interlogix-autodiscovery
           path: rtl4332mqtt-interlogix-autodiscovery
           docker-context: rtl4332mqtt-interlogix-autodiscovery
+      - docker/publish:
+          name: Publish nginx_proxy addon
+          image: $DOCKER_LOGIN/nginx_proxy
+          path: nginx_proxy
+          docker-context: nginx_proxy

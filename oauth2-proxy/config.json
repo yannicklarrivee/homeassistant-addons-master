@@ -3,7 +3,7 @@
   "version": "0.4.0",
   "slug": "oauth2-proxy",
   "description": "Start an oauth2-proxy for external authentication.",
-  "url": "https://github.com/yannicklarrivee/homeassistant-addons-master",
+  "url": "https://github.com/yannicklarrivee/homeassistant-addons-master/tree/master/oauth2-proxy",
   "startup": "application",
   "boot": "auto",
   "map": ["config","share:rw"],
