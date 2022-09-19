@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=home-assistant/amd64-base:3.14
 FROM $BUILD_FROM
 
 # Setup base
