@@ -1,0 +1,32 @@
+---
+configuration:
+  domain:
+    name: Domain
+    description: The domain name to use for the proxy.
+  homeassistant:
+    name: Home Assistant
+    description: >-
+      The name/adress of the local Home Assistant instance.
+  homeassistant_port:
+    name: Home Assistant port
+    description: >-
+      The port of the local Home Assistant instance.
+  oauth2_proxy:
+    name: Oauth2 proxy
+    description: >-
+      The name/adress of the oauth2 proxy instance.
+  oauth2_proxy_port:
+    name: Oauth2 proxy
+    description: >-
+      The port of the oauth2 proxy instance.
+  certfile:
+    name: Certificate File
+    description: >-
+      The certificate file to use in the `/ssl` directory.
+  keyfile:
+    name: Private Key File
+    description: Private Private Key File to use in the `/ssl` directory.
+
+network:
+  443/tcp: HTTPS (SSL) Port
+  80/tcp: HTTP (non-SSL) Port
