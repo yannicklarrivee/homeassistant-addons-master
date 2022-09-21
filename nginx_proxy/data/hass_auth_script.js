@@ -10,7 +10,7 @@ function get_token(r) {
 /*     if (email == '') { */
 /*         r.return(500, "No email found"); */
 /*     } */
-    var token = tokens["yannicklarrivee@gmail.com"];
+    var token = tokens["embedded-access"];
     if (token == undefined) {
         r.return(500, "No token found");
     }

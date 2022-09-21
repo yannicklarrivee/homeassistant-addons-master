@@ -1,4 +1,4 @@
-ARG BUILD_FROM=homeassistant/amd64-base:3.14
+ARG BUILD_FROM=homeassistant/armv7-base:3.10
 FROM $BUILD_FROM
 
 # Setup base
