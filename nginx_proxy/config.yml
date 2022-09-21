@@ -1,5 +1,5 @@
 ---
-version: 0.1.1
+version: 0.1.2
 hassio_api: true
 slug: nginx_proxy
 name: NGINX Home Assistant SSL proxy + AW
@@ -16,6 +16,7 @@ init: false
 map:
   - ssl
   - share
+  - config
 options:
   domain: null
   homeassistant: homeassistant
