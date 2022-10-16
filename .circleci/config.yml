@@ -1,7 +1,8 @@
 version: 2.1
-arm-executor:
-  machine:
-    image: ubuntu-2004:current
+executors:
+  arm-executor:
+    machine:
+      image: ubuntu-2004:current
 orbs:
   docker: circleci/docker@2.1.3
 workflows:
