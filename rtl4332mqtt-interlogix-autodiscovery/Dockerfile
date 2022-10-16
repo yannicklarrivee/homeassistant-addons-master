@@ -5,12 +5,12 @@
 
 # IMPORTANT: The container needs privileged access to /dev/bus/usb on the host.
 
-ARG BUILD_FROM=homeassistant/amd64-base:latest
+ARG BUILD_FROM=homeassistant/amd64-base:3.10
 FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-MAINTAINER Yannick Larrivée
+LABEL Yannick Larrivée
 
 LABEL Description="This image is used to start a script that will monitor for RF events on 433Mhz (configurable) and send the data to an MQTT server"
 
@@ -53,4 +53,11 @@ ENV MQTT_USER="guest"
 ENV MQTT_PASS="guest"
 ENV MQTT_TOPIC="homeassistant/sensor/rtl433"
 
-CMD ls /config/rtl4332mqtt-interlogix-autodiscovery/ && cd / && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl2mqtt.sh /rtl2mqtt.sh && chmod +x /rtl2mqtt.sh && cp /config/rtl4332mqtt-interlogix-autodiscovery/rtl_433_mqtt_hass.py /rtl_433_mqtt_hass.py && ls && ls /data && ./rtl2mqtt.sh
+# Copy data
+COPY data/run.sh /
+COPY data/rtl2mqtt.sh /
+COPY data/rtl_433_mqtt_hass.py /
+RUN chmod +x /rtl2mqtt.sh
+RUN chmod +x /run.sh
+
+CMD [ "/run.sh" ]

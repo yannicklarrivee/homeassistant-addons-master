@@ -20,10 +20,12 @@ workflows:
           path: tshark
           docker-context: tshark
       - docker/publish:
-          name: Publish rtl4332mqtt-interlogix-autodiscovery addon
-          image: $DOCKER_LOGIN/rtl4332mqtt-interlogix-autodiscovery
+          name: Publish armv7-rtl4332mqtt-interlogix-autodiscovery addon
+          image: $DOCKER_LOGIN/armv7-rtl4332mqtt-interlogix-autodiscovery
+          extra_build_args: --buid-from ghcr.io/home-assistant/armv7-base:3.14 --platform armv7
           path: rtl4332mqtt-interlogix-autodiscovery
           docker-context: rtl4332mqtt-interlogix-autodiscovery
+          tag: 0.2.8
       - docker/publish:
           name: Publish nginx_proxy addon
           image: $DOCKER_LOGIN/armv7-nginx_proxy
