@@ -22,7 +22,7 @@ workflows:
       - docker/publish:
           name: Publish armv7-rtl4332mqtt-interlogix-autodiscovery addon
           image: $DOCKER_LOGIN/armv7-rtl4332mqtt-interlogix-autodiscovery
-          extra_build_args: --buid-from ghcr.io/home-assistant/armv7-base:3.14 --platform armv7
+          extra_build_args: --build-from ghcr.io/home-assistant/armv7-base:3.14 --platform armv7
           path: rtl4332mqtt-interlogix-autodiscovery
           docker-context: rtl4332mqtt-interlogix-autodiscovery
           tag: 0.2.8
