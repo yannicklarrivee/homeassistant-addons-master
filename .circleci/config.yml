@@ -3,6 +3,7 @@ executors:
   arm-executor:
     machine:
       image: ubuntu-2004:current
+    resource_class: arm.medium
 orbs:
   docker: circleci/docker@2.1.3
 workflows:
