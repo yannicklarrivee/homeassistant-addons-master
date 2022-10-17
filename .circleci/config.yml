@@ -31,7 +31,7 @@ workflows:
           executor: arm-executor
           path: rtl4332mqtt-interlogix-autodiscovery
           docker-context: rtl4332mqtt-interlogix-autodiscovery
-          tag: 0.2.9
+          tag: 0.3.0
       - docker/publish:
           name: Publish nginx_proxy addon
           image: $DOCKER_LOGIN/armv7-nginx_proxy
