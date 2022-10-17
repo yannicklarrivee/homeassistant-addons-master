@@ -34,7 +34,7 @@ discovery_timeouts = {}
 
 sensors = options_dict["sensors"]
 
-mappings_file = open("/data/mappings.json")
+mappings_file = open("/mappings.json")
 mappings = json.loads(mappings_file.read())
 
 
