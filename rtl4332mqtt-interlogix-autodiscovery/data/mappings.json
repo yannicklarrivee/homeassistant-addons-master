@@ -326,6 +326,5 @@
             "unit_of_measurement": "W",
             "value_template": "{{ value|float }}"
         }
-    },
-
+    }
 }
