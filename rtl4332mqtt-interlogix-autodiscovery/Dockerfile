@@ -54,7 +54,7 @@ ENV MQTT_PASS="guest"
 ENV MQTT_TOPIC="homeassistant/sensor/rtl433"
 
 # Copy data
-COPY data/mappings.json data/mappings.json
+COPY data/mappings.json /data/mappings.json
 COPY data/run.sh /
 COPY data/rtl2mqtt.sh /
 COPY data/rtl_433_mqtt_hass.py /
