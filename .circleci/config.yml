@@ -39,6 +39,7 @@ workflows:
             - checkout
             - run:
                 command: export ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
+            - checkout
             - run:
                 command: TAG=$(cat ,/<< matrix.path >>/config.yml | yq '.version')   
           name: Publish $ARCH-<< matrix.path >> addon
