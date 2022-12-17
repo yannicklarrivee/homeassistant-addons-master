@@ -41,7 +41,7 @@ workflows:
                 command: export ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
             - checkout
             - run:
-                command: TAG=$(cat ,/<< matrix.path >>/config.yml | yq '.version')   
+                command: TAG=$(cat ./<< matrix.path >>/config.yml | yq '.version')   
           name: Publish $ARCH-<< matrix.path >> addon
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
           extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/$ARCH-base:latest --platform $PLATFORM
