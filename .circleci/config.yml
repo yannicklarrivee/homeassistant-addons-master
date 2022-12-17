@@ -36,6 +36,7 @@ workflows:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
           pre-steps:
+            - checkout
             - run:
                 command: export ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
             - run:
