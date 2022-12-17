@@ -37,7 +37,7 @@ workflows:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
           pre-steps:
             - run:
-                command: export ARCH=armv7 && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
+                command: export ARCH=armv7 && pwd &&  PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
             - run:
                 command: TAG=$(cat ,/<< matrix.path >>/config.yml | yq '.version')   
           name: Publish $ARCH-<< matrix.path >> addon
