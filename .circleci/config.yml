@@ -6,9 +6,16 @@ executors:
     resource_class: arm.medium
 orbs:
   docker: circleci/docker@2.1.3
+  yq: nikkei/rnikkei-yq@0.0.3
+jobs:
+  install-yq:
+    executor: arm-executor
+    steps:
+     - yq/install 
 workflows:
   build-and-publish-addons-images:
     jobs:
+      - install-yq
       - docker/publish:
           name: Publish dropbox-autodelete addon
           image: $DOCKER_LOGIN/dropbox-autodelete
@@ -25,13 +32,20 @@ workflows:
           path: tshark
           docker-context: tshark
       - docker/publish:
-          name: Publish armv7-rtl4332mqtt-interlogix-autodiscovery addon
-          image: $DOCKER_LOGIN/armv7-rtl4332mqtt-interlogix-autodiscovery
-          extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/armv7-base:latest --platform linux/arm/v7
+          matrix:
+            parameters:
+              path: [rtl4332mqtt-interlogix-autodiscovery]
+          pre-steps:
+            - run:
+                command: export ARCH=armv7 && PLATFORM=$(cat build.yml | yq '.platform.[env(ARCH)]')
+            - run:
+                command: TAG=$(cat config.yml | yq '.version')   
+          name: Publish $ARCH-rtl4332mqtt-interlogix-autodiscovery addon
+          image: $DOCKER_LOGIN/$ARCH-rtl4332mqtt-interlogix-autodiscovery
+          extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/$ARCH-base:latest --platform $PLATFORM
           executor: arm-executor
-          path: rtl4332mqtt-interlogix-autodiscovery
-          docker-context: rtl4332mqtt-interlogix-autodiscovery
-          tag: 0.3.1
+          docker-context: << matrix.path >>
+          tag: $TAG
       - docker/publish:
           name: Publish nginx_proxy addon
           image: $DOCKER_LOGIN/armv7-nginx_proxy
