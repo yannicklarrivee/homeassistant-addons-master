@@ -37,9 +37,9 @@ workflows:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
           pre-steps:
             - run:
-                command: export ARCH=armv7 && PLATFORM=$(cat build.yml | yq '.platform.[env(ARCH)]')
+                command: export ARCH=armv7 && PLATFORM=$(cat << matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
             - run:
-                command: TAG=$(cat config.yml | yq '.version')   
+                command: TAG=$(cat << matrix.path >>/config.yml | yq '.version')   
           name: Publish $ARCH-rtl4332mqtt-interlogix-autodiscovery addon
           image: $DOCKER_LOGIN/$ARCH-rtl4332mqtt-interlogix-autodiscovery
           extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/$ARCH-base:latest --platform $PLATFORM
