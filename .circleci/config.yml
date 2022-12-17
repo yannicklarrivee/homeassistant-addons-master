@@ -38,7 +38,7 @@ workflows:
           pre-steps:
             - checkout
             - run:
-                command: export ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')
+                command: export ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]') && echo $ARCH && echo $PLATFORM
             - checkout
             - run:
                 command: TAG=$(cat ./<< matrix.path >>/config.yml | yq '.version')   
