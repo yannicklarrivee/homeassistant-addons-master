@@ -34,7 +34,7 @@ workflows:
       - docker/publish:
           matrix:
             parameters:
-              path: [rtl4332mqtt-interlogix-autodiscovery]
+              path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
           pre-steps:
             - run:
                 command: export ARCH=armv7 && PLATFORM=$(cat build.yml | yq '.platform.[env(ARCH)]')
