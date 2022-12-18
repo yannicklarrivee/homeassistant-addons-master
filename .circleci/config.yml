@@ -35,7 +35,6 @@ workflows:
           matrix:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
-              arch: [armv7]
           context:
             - build-architecture
           pre-steps:
