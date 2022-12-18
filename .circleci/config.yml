@@ -17,21 +17,6 @@ workflows:
     jobs:
       - install-yq
       - docker/publish:
-          name: Publish dropbox-autodelete addon
-          image: $DOCKER_LOGIN/dropbox-autodelete
-          path: dropbox-autodelete
-          docker-context: dropbox-autodelete
-      - docker/publish:
-          name: Publish oauth2-proxy addon
-          image: $DOCKER_LOGIN/oauth2-proxy
-          path: oauth2-proxy
-          docker-context: oauth2-proxy
-      - docker/publish:
-          name: Publish tshark addon
-          image: $DOCKER_LOGIN/tshark
-          path: tshark
-          docker-context: tshark
-      - docker/publish:
           matrix:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
@@ -54,8 +39,3 @@ workflows:
           executor: arm-executor
           docker-context: << matrix.path >>
           tag: $TAG
-      - docker/publish:
-          name: Publish nginx_proxy addon
-          image: $DOCKER_LOGIN/armv7-nginx_proxy
-          path: nginx_proxy
-          docker-context: nginx_proxy
