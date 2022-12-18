@@ -42,7 +42,7 @@ workflows:
             - run:
                 command: echo 'export ARCH=armv7' >> "$BASH_ENV"
             - run:
-                command: echo 'export PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq "'.platform.[env(ARCH)]'")' >> "$BASH_ENV"
+                command: echo 'export PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq ''.platform.[env(ARCH)]'')' >> "$BASH_ENV"
             - checkout
             - run:
                 command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '\'.version\''')' >> "$BASH_ENV"
