@@ -40,10 +40,14 @@ workflows:
           pre-steps:
             - checkout
             - run:
-                command: ARCH=armv7 && pwd && ls -ahl && PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]') && echo $ARCH && echo $PLATFORM
+                command: echo 'export ARCH=armv7' >> "$BASH_ENV"
+            - run:
+                command: echo 'export PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '.platform.[env(ARCH)]')' >> "$BASH_ENV"
             - checkout
             - run:
-                command: TAG=$(cat ./<< matrix.path >>/config.yml | yq '.version') && echo $TAG  
+                command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '.version')' >> "$BASH_ENV"
+            - run:
+                command: echo $ARCH && echo $PLATFORM && echo $TAG
           name: Publish $ARCH-<< matrix.path >> addon
           before_build:
             - checkout
