@@ -56,7 +56,7 @@ workflows:
           extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/"${ARCH}"-base:latest --platform "${PLATFORM}"
           executor: arm-executor
           docker-context: << matrix.path >>
-          tag: $TAG
+          tag: "$TAG"
       - docker/publish:
           name: Publish nginx_proxy addon
           image: $DOCKER_LOGIN/armv7-nginx_proxy
