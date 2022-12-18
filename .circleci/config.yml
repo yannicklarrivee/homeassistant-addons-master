@@ -53,7 +53,7 @@ workflows:
             - run:
                 command: TAG=$(cat ./<< matrix.path >>/config.yml | yq '.version') && echo $TAG  
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
-          extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/${ARCH}-base:latest --platform ${PLATFORM}
+          extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/"${ARCH}"-base:latest --platform "${PLATFORM}"
           executor: arm-executor
           docker-context: << matrix.path >>
           tag: $TAG
