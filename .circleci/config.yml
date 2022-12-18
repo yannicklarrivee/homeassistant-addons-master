@@ -34,7 +34,7 @@ workflows:
       - docker/publish:
           matrix:
             parameters:
-              path: [rtl4332mqtt-interlogix-autodiscovery,tshark]
+              path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
           context:
             - build-architecture
           pre-steps:
