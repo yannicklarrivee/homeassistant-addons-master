@@ -25,22 +25,31 @@ workflows:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
               context: [aarch64, amd64, armv7, i386]
+              executor: [arm-executor, amd-executor]
+            exclude:
+              - context: aarch64
+                executor: amd-executor
+              - context: armv7
+                executor: amd-executor
+              - context: amd64
+                executor: arm-executor
+              - context: i386
+                executor: arm-executor            
           pre-steps:
             - checkout
             #- run:
             #    command: echo 'export ARCH=armv7' >> "$BASH_ENV"
-            - run:
-                command: echo 'export EXECUTOR=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.executor.[env(ARCH)]'"'"')' >> "$BASH_ENV"
+            #- run:
+            #    command: echo 'export EXECUTOR=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.executor.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - run:
                 command: echo 'export BASE_IMAGE=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - checkout
             - run:
                 command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '"'"'.version'"'"')' >> "$BASH_ENV"
             - run:
-                command: echo $ARCH && echo $PLATFORM && echo $TAG && echo $EXECUTOR
+                command: echo $ARCH && echo $PLATFORM && echo $TAG
           name: Publish << matrix.context >>-<< matrix.path >> addon
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
           extra_build_args: --build-arg BUILD_FROM=$BASE_IMAGE --platform $PLATFORM
-          executor: amd-executor
           docker-context: << matrix.path >>
           tag: $TAG
