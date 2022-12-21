@@ -27,16 +27,16 @@ workflows:
               context: [aarch64, amd64, armv7, i386]
               executor: [arm-executor, amd-executor]
             exclude:
-              - path: .*
+              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
                 context: aarch64
                 executor: amd-executor
-              - path: .*
+              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
                 context: armv7
                 executor: amd-executor
-              - path: .*
+              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
                 context: amd64
                 executor: arm-executor
-              - path: .*
+              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
                 context: i386
                 executor: arm-executor            
           pre-steps:
