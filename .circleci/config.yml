@@ -86,7 +86,7 @@ workflows:
                 executor: arm-executor
               - path: nginx_proxy
                 context: i386
-                executor: arm-executor       
+                executor: arm-executor   
           pre-steps:
             - checkout
             #- run:
