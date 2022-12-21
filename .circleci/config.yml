@@ -41,6 +41,6 @@ workflows:
           name: Publish << matrix.context >>-<< matrix.path >> addon
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
           extra_build_args: --build-arg BUILD_FROM=$BASE_IMAGE --platform $PLATFORM
-          executor: $EXECUTOR
+          executor: amd-executor
           docker-context: << matrix.path >>
           tag: $TAG
