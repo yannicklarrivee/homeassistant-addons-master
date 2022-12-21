@@ -24,8 +24,8 @@ workflows:
             - build-architecture
           pre-steps:
             - checkout
-            - run:
-                command: echo 'export ARCH=armv7' >> "$BASH_ENV"
+            #- run:
+            #    command: echo 'export ARCH=armv7' >> "$BASH_ENV"
             - run:
                 command: echo 'export PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.platform.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - checkout
