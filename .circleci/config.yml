@@ -27,13 +27,17 @@ workflows:
               context: [aarch64, amd64, armv7, i386]
               executor: [arm-executor, amd-executor]
             exclude:
-              - context: aarch64
+              - path: .*
+                context: aarch64
                 executor: amd-executor
-              - context: armv7
+              - path: .*
+                context: armv7
                 executor: amd-executor
-              - context: amd64
+              - path: .*
+                context: amd64
                 executor: arm-executor
-              - context: i386
+              - path: .*
+                context: i386
                 executor: arm-executor            
           pre-steps:
             - checkout
