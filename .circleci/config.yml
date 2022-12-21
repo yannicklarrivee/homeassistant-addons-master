@@ -32,7 +32,7 @@ workflows:
                 command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '"'"'.version'"'"')' >> "$BASH_ENV"
             - run:
                 command: echo $ARCH && echo $PLATFORM && echo $TAG
-          name: Publish $ARCH-<< matrix.context >-<< matrix.path >> addon
+          name: Publish $ARCH-<< matrix.context >>-<< matrix.path >> addon
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
           extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/$ARCH-base:latest --platform $PLATFORM
           executor: arm-executor
