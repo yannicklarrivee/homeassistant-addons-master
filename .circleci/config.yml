@@ -27,18 +27,66 @@ workflows:
               context: [aarch64, amd64, armv7, i386]
               executor: [arm-executor, amd-executor]
             exclude:
-              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
+              - path: rtl4332mqtt-interlogix-autodiscovery
                 context: aarch64
                 executor: amd-executor
-              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
+              - path: rtl4332mqtt-interlogix-autodiscovery
                 context: armv7
                 executor: amd-executor
-              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
+              - path: rtl4332mqtt-interlogix-autodiscovery
                 context: amd64
                 executor: arm-executor
-              - path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
+              - path: rtl4332mqtt-interlogix-autodiscovery
                 context: i386
-                executor: arm-executor            
+                executor: arm-executor
+              - path: tshark
+                context: aarch64
+                executor: amd-executor
+              - path: tshark
+                context: armv7
+                executor: amd-executor
+              - path: tshark
+                context: amd64
+                executor: arm-executor
+              - path: tshark
+                context: i386
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: aarch64
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: armv7
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: amd64
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: i386
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: aarch64
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: armv7
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: amd64
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: i386
+                executor: arm-executor
+              - path: nginx_proxy
+                context: aarch64
+                executor: amd-executor
+              - path: nginx_proxy
+                context: armv7
+                executor: amd-executor
+              - path: nginx_proxy
+                context: amd64
+                executor: arm-executor
+              - path: nginx_proxy
+                context: i386
+                executor: arm-executor       
           pre-steps:
             - checkout
             #- run:
