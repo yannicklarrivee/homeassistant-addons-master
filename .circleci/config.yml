@@ -4,6 +4,10 @@ executors:
     machine:
       image: ubuntu-2004:current
     resource_class: arm.medium
+  amd-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: medium
 orbs:
   docker: circleci/docker@2.1.3
   yq: nikkei/rnikkei-yq@0.0.3
@@ -20,22 +24,80 @@ workflows:
           matrix:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
-          context:
-            - build-architecture
+              context: [aarch64, amd64, armv7, i386]
+              executor: [arm-executor, amd-executor]
+            exclude:
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: aarch64
+                executor: amd-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: armv7
+                executor: amd-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: amd64
+                executor: arm-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: i386
+                executor: arm-executor
+              - path: tshark
+                context: aarch64
+                executor: amd-executor
+              - path: tshark
+                context: armv7
+                executor: amd-executor
+              - path: tshark
+                context: amd64
+                executor: arm-executor
+              - path: tshark
+                context: i386
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: aarch64
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: armv7
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: amd64
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: i386
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: aarch64
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: armv7
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: amd64
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: i386
+                executor: arm-executor
+              - path: nginx_proxy
+                context: aarch64
+                executor: amd-executor
+              - path: nginx_proxy
+                context: armv7
+                executor: amd-executor
+              - path: nginx_proxy
+                context: amd64
+                executor: arm-executor
+              - path: nginx_proxy
+                context: i386
+                executor: arm-executor
           pre-steps:
             - checkout
             - run:
-                command: echo 'export ARCH=armv7' >> "$BASH_ENV"
-            - run:
-                command: echo 'export PLATFORM=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.platform.[env(ARCH)]'"'"')' >> "$BASH_ENV"
+                command: echo 'export BASE_IMAGE=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - checkout
             - run:
                 command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '"'"'.version'"'"')' >> "$BASH_ENV"
             - run:
                 command: echo $ARCH && echo $PLATFORM && echo $TAG
-          name: Publish $ARCH-<< matrix.path >> addon
+          name: Publish << matrix.context >>-<< matrix.path >> addon
           image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
-          extra_build_args: --build-arg BUILD_FROM=ghcr.io/home-assistant/$ARCH-base:latest --platform $PLATFORM
-          executor: arm-executor
+          extra_build_args: --build-arg BUILD_FROM=$BASE_IMAGE --platform $PLATFORM
           docker-context: << matrix.path >>
           tag: $TAG
