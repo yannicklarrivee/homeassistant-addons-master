@@ -89,10 +89,6 @@ workflows:
                 executor: arm-executor
           pre-steps:
             - checkout
-            #- run:
-            #    command: echo 'export ARCH=armv7' >> "$BASH_ENV"
-            #- run:
-            #    command: echo 'export EXECUTOR=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.executor.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - run:
                 command: echo 'export BASE_IMAGE=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             - checkout
