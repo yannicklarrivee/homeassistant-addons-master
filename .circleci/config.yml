@@ -20,7 +20,7 @@ workflows:
           matrix:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy]
-              context: [build-architecture, build_aarch64]
+              context: [build-architecture, build-aarch64]
           pre-steps:
             - checkout
             #- run:
