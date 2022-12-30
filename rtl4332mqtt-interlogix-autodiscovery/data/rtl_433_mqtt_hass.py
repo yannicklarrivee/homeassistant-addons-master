@@ -23,7 +23,7 @@ options_dict = json.loads(json_data)
 MQTT_HOST = options_dict["mqtt_host"] #"homeassistant"
 MQTT_PORT = 1883
 MQTT_TOPIC_1 = options_dict["mqtt_topic"] + "/devices/+/+/+/events"
-MQTT_TOPIC_2 = options_dict["mqtt_topic"] + "/devices/+/+/events"
+MQTT_TOPIC_2 = options_dict["mqtt_topic"] + "/devices/+/+/+/+/events"
 # When MQTT_USERNAME is set to None it will disable username and password for mqtt
 MQTT_USERNAME = options_dict["mqtt_user"]
 MQTT_PASSWORD = options_dict["mqtt_password"]
