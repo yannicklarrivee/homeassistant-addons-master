@@ -202,6 +202,6 @@ do
     echo "RTL_433 Frequency = " $FREQUENCY
     echo "RTL_433 Gain = " $GAIN
     echo "RTL_433 Frequency Offset = " $OFFSET
-    /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -d $DEVICE -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype][/id]" &\
+    /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -d $DEVICE -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]" &\
 done
 wait
