@@ -12,18 +12,20 @@ ENV LANG C.UTF-8
 
 LABEL Maintainer = "Yannick Larrivée"
  
-LABEL Description="This image is used to start a oauth2 proxy for authentication."
+LABEL Description="This image is used to start voipms-mss service."
 
 #
 # Copy run file
 #
 COPY ./run.sh ./run.sh
-#cd
-# Install tshark
+COPY ./send-sms.py ./send-sms.py
+COPY ./requirements.txt ./requirements.txt
+
+# Install python requirements
 #
-RUN apk add --no-cache go
-RUN go get github.com/oauth2-proxy/oauth2-proxy/v7 && go clean --modcache
+RUN apk add --no-cache jq python3 py3-pip && \
+pip install -r requirements.txt
 #
-# Start monitoring and make output file available
+# Sends SMS
 #
 CMD chmod +x /run.sh && /run.sh
