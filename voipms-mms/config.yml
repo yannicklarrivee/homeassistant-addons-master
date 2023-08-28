@@ -1,0 +1,26 @@
+name: voipms-mms
+version: 0.1.0
+slug: voipms-mms
+description: 'Start voipms-mms service to send a sms.'
+url: 'https://github.com/yannicklarrivee/homeassistant-addons-master'
+startup: once
+boot: manual
+map:
+    - config
+    - 'share:rw'
+host_network: 'true'
+arch:
+    - aarch64
+    - amd64
+    - armv7
+    - i386
+options:
+    api_username: xxxxxxxx
+    api_password: xxxxxxxxx
+    did: xxxxxxx
+    destination: xxxxxxx
+schema:
+    api_username: str
+    api_password: str
+    did: str
+    destination: str
