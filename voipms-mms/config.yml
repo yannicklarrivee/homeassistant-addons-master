@@ -6,6 +6,7 @@ url: 'https://github.com/yannicklarrivee/homeassistant-addons-master'
 startup: application
 boot: auto
 init: 'false'
+stdin: 'true'
 map:
     - config
     - 'share:rw'
