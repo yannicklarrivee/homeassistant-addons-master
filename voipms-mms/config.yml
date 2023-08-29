@@ -3,8 +3,8 @@ version: 0.3.0
 slug: voipms-mms
 description: 'Start voipms-mms service to send a sms.'
 url: 'https://github.com/yannicklarrivee/homeassistant-addons-master'
-startup: once
-boot: manual
+startup: application
+boot: auto
 init: 'false'
 map:
     - config
