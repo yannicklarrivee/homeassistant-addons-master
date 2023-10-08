@@ -20,7 +20,7 @@ import paho.mqtt.client as mqtt
 options_file = open("/data/options.json", 'r', encoding='utf-8')
 json_data = options_file.read()
 options_dict = json.loads(json_data)
-MQTT_HOST = options_dict["mqtt_host"] #"homeassistant"
+MQTT_HOST = options_dict["mqtt_host"]  # "homeassistant"
 MQTT_PORT = 1883
 MQTT_TOPIC_1 = options_dict["mqtt_topic"] + "/devices/+/+/+/events"
 MQTT_TOPIC_2 = options_dict["mqtt_topic"] + "/devices/+/+/+/+/events"
@@ -81,7 +81,7 @@ def publish_config(mqttc, topic, model, instance, mapping):
     global discovery_timeouts
     global sensors
 
-    print("Instance 1 " + instance)
+    print("Instance 1 " + instance)docker 
     for sensor in sensors:
         if instance == sensor["id"]:
             instance = str(sensor["name"])
@@ -90,9 +90,10 @@ def publish_config(mqttc, topic, model, instance, mapping):
     device_type = mapping["device_type"]
     object_suffix = mapping["object_suffix"]
     object_id = "-".join([model, instance_no_slash])
-    object_name = "-".join([object_id,object_suffix])
+    object_name = object_suffix  # "-".join([object_id,object_suffix])
 
-    path = "/".join([DISCOVERY_PREFIX, device_type, object_id, object_name, "config"])
+    path = "/".join([DISCOVERY_PREFIX, device_type,
+                     object_id, object_name, "config"])
 
     # check timeout
     now = time.time()
@@ -106,7 +107,8 @@ def publish_config(mqttc, topic, model, instance, mapping):
     config["name"] = object_name
     config["state_topic"] = topic
     config["unique_id"] = object_name
-    config["device"] = { "identifiers": object_id, "name": object_id, "manufacturer": "rtl_433" }
+    config["device"] = {"identifiers": object_id,
+                        "name": object_id, "manufacturer": "rtl_433"}
 
     mqttc.publish(path, json.dumps(config))
 
@@ -141,7 +143,7 @@ def bridge_event_to_hass(mqttc, topicprefix, data):
     # detect known attributes
     for key in data.keys():
         if key in mappings:
-            topic = "/".join([topicprefix,model,subtype,instance,key])
+            topic = "/".join([topicprefix, model, subtype, instance, key])
             publish_config(mqttc, topic, model, instance, mappings[key])
 
 
