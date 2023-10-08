@@ -167,10 +167,6 @@ MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
 MQTT_USER="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
 MQTT_PASS="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
 MQTT_TOPIC="$(jq --raw-output '.mqtt_topic' $CONFIG_PATH)"
-# PROTOCOL="$(jq --raw-output '.protocol' $CONFIG_PATH)"
-# FREQUENCY="$(jq --raw-output '.frequency' $CONFIG_PATH)"
-# GAIN="$(jq --raw-output '.gain' $CONFIG_PATH)"
-# OFFSET="$(jq --raw-output '.frequency_offset' $CONFIG_PATH)"
 
 # Start the listener and enter an endless loop
 echo "Starting RTL_433 with parameters:"
@@ -178,18 +174,9 @@ echo "MQTT Host =" $MQTT_HOST
 echo "MQTT User =" $MQTT_USER
 echo "MQTT Password =" $MQTT_PASS
 echo "MQTT Topic =" $MQTT_TOPIC
-# echo "RTL_433 Protocol =" $PROTOCOL
-# echo "RTL_433 Frequency =" $FREQUENCY
-# echo "RTL_433 Gain =" $GAIN
-# echo "RTL_433 Frequency Offset =" $OFFSET
 
 #set -x  ## uncomment for MQTT logging...
-
 python3 -u /rtl_433_mqtt_hass.py & \
-
-#/usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -d 0 -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype][/id]" & \
-#/usr/local/bin/rtl_433 -f 433M -g $GAIN -p $OFFSET -s 250k -d 1 -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype][/id]"
-
 count="$(jq '.radios | length' $CONFIG_PATH)"
 count="$(($count-1))"
 for DEVICE in $(seq 0 $count)
@@ -202,6 +189,6 @@ do
     echo "RTL_433 Frequency = " $FREQUENCY
     echo "RTL_433 Gain = " $GAIN
     echo "RTL_433 Frequency Offset = " $OFFSET
-    /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -d $DEVICE -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]" &\
+    /usr/local/bin/rtl_433 -f $FREQUENCY -R $PROTOCOL -g $GAIN -p $OFFSET -s 250k -d $DEVICE -F "mqtt://$MQTT_HOST,user=$MQTT_USER,pass=$MQTT_PASS,events=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/events,states=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]/states,devices=$MQTT_TOPIC/devices[/model][/subtype:nosubtype][/channel][/id]" -F log &\
 done
 wait

@@ -56,9 +56,7 @@ ENV MQTT_TOPIC="homeassistant/sensor/rtl433"
 # Copy data
 COPY data/mappings.json /
 COPY data/run.sh /
-COPY data/rtl2mqtt.sh /
 COPY data/rtl_433_mqtt_hass.py /
-RUN chmod +x /rtl2mqtt.sh
 RUN chmod +x /run.sh
 
 CMD [ "/run.sh" ]
