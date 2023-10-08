@@ -81,7 +81,7 @@ def publish_config(mqttc, topic, model, instance, mapping):
     global discovery_timeouts
     global sensors
 
-    print("Instance 1 " + instance)docker 
+    print("Instance 1 " + instance) 
     for sensor in sensors:
         if instance == sensor["id"]:
             instance = str(sensor["name"])
