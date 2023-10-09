@@ -29,7 +29,7 @@ while read -r msg; do
         ./dropbox_uploader.sh -s -f /etc/uploader.conf upload /backup/*.tar "$OUTPUT_DIR"
         if [[ "$KEEP_LAST" ]]; then
             echo "[Info] keep_last option is set, cleaning up files..."
-            python3 /keep_last.py "$KEEP_LAST"
+            python3 share/keep_last.py "$KEEP_LAST"
         fi
         if [[ "$FILETYPES" ]]; then
             echo "[Info] filetypes option is set, scanning share directory for files with extensions ${FILETYPES}"
