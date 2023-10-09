@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 ENV LANG C.UTF-8
 
 # Setup base
-RUN apk add --no-cache jq curl findutils python3 python3-dev py-pip && \
+RUN apk add --no-cache jq curl findutils python3=3.8.10-r0 python3-dev=3.8.10-r0 py-pip && \
     pip3 install requests python-dateutil==2.6.1 pytz==2018.3
 
 # Copy data
