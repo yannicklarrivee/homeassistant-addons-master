@@ -1,5 +1,5 @@
 name: 'Dropbox Sync'
-version: 0.0.8
+version: 0.0.9
 slug: dropbox_sync
 description: 'Upload your Hass.io backups to Dropbox'
 url: 'https://github.com/yannicklarrivee/homeassistant-addons-master'
@@ -12,7 +12,7 @@ arch:
     - i386
 stdin: true
 hassio_api: true
-hassio_role: default
+hassio_role: admin
 boot: auto
 map:
     - backup
