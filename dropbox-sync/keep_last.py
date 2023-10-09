@@ -8,10 +8,12 @@ import pytz
 BASE_URL = "http://hassio/"
 # HEADERS = {"X-HASSIO-KEY": os.environ.get("HASSIO_TOKEN")}
 TOKEN = os.getenv('SUPERVISOR_TOKEN')
+print(TOKEN)
 HEADERS = {
     "Authorization": "Bearer {}".format(TOKEN),
     "content-type": "application/json",
 }
+
 def main(number_to_keep):
 
     backup_info = requests.get(BASE_URL + "backups", headers=HEADERS)
