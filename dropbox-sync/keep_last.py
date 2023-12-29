@@ -7,8 +7,14 @@ import pytz
 
 BASE_URL = "http://hassio/"
 # HEADERS = {"X-HASSIO-KEY": os.environ.get("HASSIO_TOKEN")}
-TOKEN = os.getenv('SUPERVISOR_TOKEN')
+TOKEN = os.getenv("SUPERVISOR_TOKEN")
+print("superviser token")
 print(TOKEN)
+TOKEN = os.getenv("HASSIO_TOKEN")
+print("hassio token ")
+print(TOKEN)
+print("printing environment variables")
+print(os.environ)
 HEADERS = {
     "Authorization": "Bearer {}".format(TOKEN),
     "content-type": "application/json",
