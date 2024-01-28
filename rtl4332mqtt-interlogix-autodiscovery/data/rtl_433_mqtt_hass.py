@@ -106,7 +106,7 @@ def publish_config(mqttc, topic, model, instance, mapping):
     config = mapping["config"].copy()
     config["name"] = object_name
     config["state_topic"] = topic
-    config["unique_id"] = object_id
+    config["unique_id"] = "-".join([object_id, object_name])
     config["device"] = {"identifiers": object_id,
                         "name": object_id, "manufacturer": "rtl_433"}
 
