@@ -1,5 +1,5 @@
 name: 'Dropbox autodelete'
-version: 0.1.0
+version: 0.1.1
 slug: dropbox-autodelete
 description: 'Autodelete files in dropbox folder (Keep X last enrties)'
 url: 'https://github.com/yannicklarrivee/homeassistant-addons-master'
