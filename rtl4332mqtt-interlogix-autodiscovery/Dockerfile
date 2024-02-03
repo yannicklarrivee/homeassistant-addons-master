@@ -32,7 +32,7 @@ RUN apk add --no-cache --virtual build-deps alpine-sdk cmake git libusb-dev && \
     git clone https://github.com/yannicklarrivee/rtl_433 && \
     cd rtl_433/ && \
     git fetch && \
-    git checkout master && \
+    git checkout feat-interlogix-update && \
     mkdir build && \
     cd build && \
     cmake ../ && \
