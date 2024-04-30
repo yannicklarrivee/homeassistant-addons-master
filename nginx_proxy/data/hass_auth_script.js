@@ -16,3 +16,5 @@ function get_token(r) {
     }
     return r.return(200, token);
 }
+
+export default {get_token};
