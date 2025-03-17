@@ -79,7 +79,7 @@ workflows:
       - install-yq
       - path-filtering/filter:
           name: check-changed-paths
-          base-revision: main
+          base-revision: master
           mapping: |
             rtl4332mqtt-interlogix-autodiscovery/* build-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor
             tshark/* build-tshark-aarch64-arm-executor
