@@ -148,7 +148,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - master
       - publish-image:
           requires:
             - build
@@ -160,4 +160,4 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - master
