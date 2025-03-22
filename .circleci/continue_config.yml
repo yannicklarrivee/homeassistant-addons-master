@@ -1,0 +1,142 @@
+version: 2.1
+executors:
+  arm-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
+  amd-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: medium
+orbs:
+  docker: circleci/docker@2.1.3
+  yq: nikkei/rnikkei-yq@0.0.3
+parameters:
+  matrix:
+    type: matrix
+    matrix:
+      path:
+        - rtl4332mqtt-interlogix-autodiscovery
+        - tshark
+        - oauth2-proxy
+        - dropbox-autodelete
+        - nginx_proxy
+        - voipms-mms
+        - dropbox-sync
+      target-arch:
+        - aarch64
+        - amd64
+        - armv7
+        - i386
+      target-executor:
+        - arm-executor
+        - amd-executor
+  publish:
+    type: matrix
+    matrix:
+      path:
+        - rtl4332mqtt-interlogix-autodiscovery
+        - tshark
+        - oauth2-proxy
+        - dropbox-autodelete
+        - nginx_proxy
+        - voipms-mms
+        - dropbox-sync
+      target-arch:
+        - aarch64
+        - amd64
+        - armv7
+        - i386
+      target-executor:
+        - arm-executor
+        - amd-executor
+jobs:
+  install-yq:
+    executor: arm-executor
+    steps:
+      - yq/install
+  build:
+    executor: << matrix.target-executor >>
+    parameters:
+      path:
+        type: string
+      target-arch:
+        type: string
+      target-executor:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Set ARCH and PLATFORM variables
+          command: |
+            echo "export ARCH=$(case << parameters.target-arch >> in aarch64) echo arm64 ;; amd64) echo amd64 ;; armv7) echo armhf ;; i386) echo i386 ;; esac)" >> "$BASH_ENV"
+            echo "export PLATFORM=$(case << parameters.target-arch >> in aarch64) echo linux/arm64 ;; amd64) echo linux/amd64 ;; armv7) echo linux/arm/v7 ;; i386) echo linux/386 ;; esac)" >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - run:
+          name: Set BASE_IMAGE variable
+          command: |
+            echo 'export BASE_IMAGE=$(cat ./<< parameters.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
+            source "$BASH_ENV"
+  publish-image:
+    executor: << matrix.target-executor >>
+    parameters:
+      path:
+        type: string
+      target-arch:
+        type: string
+      target-executor:
+        type: string
+    steps:
+      - run:
+          name: Set TAG variable
+          command: |
+            echo 'export TAG=$(cat ./<< parameters.path >>/config.yml | yq '"'"'.version'"'"')' >> "$BASH_ENV"
+            source "$BASH_ENV"
+  publish:
+    executor: << matrix.target-executor >>
+    parameters:
+      path:
+        type: string
+      target-arch:
+        type: string
+      target-executor:
+        type: string
+      tag:
+        type: string
+    steps:
+      - docker/publish:
+          name: Publish << parameters.target-arch >>-<< parameters.path >> addon
+          image: $DOCKER_LOGIN/$ARCH-<< parameters.path >>
+          extra_build_args: --build-arg BUILD_FROM=$BASE_IMAGE --platform $PLATFORM
+          docker-context: << parameters.path >>
+          tag: << parameters.tag >>
+
+workflows:
+  build-and-publish-addons-images:
+    jobs:
+      - install-yq
+      - build:
+          matrix:
+            parameters:
+              path: << matrix.path >>
+              target-arch: << matrix.target-arch >>
+              target-executor: << matrix.target-executor >>
+          requires:
+            - check-changed-paths
+      - publish-image:
+          matrix:
+            parameters:
+              path: << matrix.path >>
+              target-arch: << matrix.target-arch >>
+              target-executor: << matrix.target-executor >>
+          requires:
+            - build
+      - publish:
+          matrix:
+            parameters:
+              path: << matrix.path >>
+              target-arch: << matrix.target-arch >>
+              target-executor: << matrix.target-executor >>
+              tag: << matrix.tag >>
+          requires:
+            - publish-image
