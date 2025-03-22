@@ -13,14 +13,14 @@ workflows:
             <<#matrix.path>>
               <<#matrix.target-arch>>
                 <<#matrix.target-executor>>
-                  <<.>>/* build-<<.>>-<<../.>>-<<../../.>> true
+                  <<.>>/* build-<<.>>-<<[../.target-arch]>>-<<[../../.target-executor]>> true
                 <</matrix.target-executor>>
               <</matrix.target-arch>>
             <</matrix.path>>
             <<#publish.path>>
               <<#publish.target-arch>>
                 <<#publish.target-executor>>
-                  <<.>>-<<../.>>-<<../../.>>/* publish true
+                  <<.>>-<<[../.target-arch]>>-<<[../../.target-executor]>>/* publish true
                 <</publish.target-executor>>
               <</publish.target-arch>>
             <</publish.path>>
