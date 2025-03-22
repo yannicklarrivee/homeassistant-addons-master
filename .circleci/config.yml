@@ -81,59 +81,59 @@ workflows:
           name: check-changed-paths
           base-revision: master
           mapping: |
-            rtl4332mqtt-interlogix-autodiscovery/* build-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor
-            tshark/* build-tshark-aarch64-arm-executor
-            oauth2-proxy/* build-oauth2-proxy-aarch64-arm-executor
-            dropbox-autodelete/* build-dropbox-autodelete-aarch64-arm-executor
-            nginx_proxy/* build-nginx_proxy-aarch64-arm-executor
-            voipms-mms/* build-voipms-mms-aarch64-arm-executor
-            dropbox-sync/* build-dropbox-sync-aarch64-arm-executor
-            rtl4332mqtt-interlogix-autodiscovery/* build-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor
-            tshark/* build-tshark-amd64-amd-executor
-            oauth2-proxy/* build-oauth2-proxy-amd64-amd-executor
-            dropbox-autodelete/* build-dropbox-autodelete-amd64-amd-executor
-            nginx_proxy/* build-nginx_proxy-amd64-amd-executor
-            voipms-mms/* build-voipms-mms-amd64-amd-executor
-            dropbox-sync/* build-dropbox-sync-amd64-amd-executor
-            rtl4332mqtt-interlogix-autodiscovery/* build-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor
-            tshark/* build-tshark-armv7-arm-executor
-            oauth2-proxy/* build-oauth2-proxy-armv7-arm-executor
-            dropbox-autodelete/* build-dropbox-autodelete-armv7-arm-executor
-            nginx_proxy/* build-nginx_proxy-armv7-arm-executor
-            voipms-mms/* build-voipms-mms-armv7-arm-executor
-            dropbox-sync/* build-dropbox-sync-armv7-arm-executor
-            rtl4332mqtt-interlogix-autodiscovery/* build-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor
-            tshark/* build-tshark-i386-arm-executor
-            oauth2-proxy/* build-oauth2-proxy-i386-arm-executor
-            dropbox-autodelete/* build-dropbox-autodelete-i386-arm-executor
-            nginx_proxy/* build-nginx_proxy-i386-arm-executor
-            voipms-mms/* build-voipms-mms-i386-arm-executor
-            dropbox-sync/* build-dropbox-sync-i386-arm-executor
-            rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor/* publish
-            tshark-amd64-amd-executor/* publish
-            oauth2-proxy-amd64-amd-executor/* publish
-            dropbox-autodelete-amd64-amd-executor/* publish
-            nginx_proxy-amd64-amd-executor/* publish
-            voipms-mms-amd64-amd-executor/* publish
-            dropbox-sync-amd64-amd-executor/* publish
-            rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor/* publish
-            tshark-aarch64-arm-executor/* publish
-            oauth2-proxy-aarch64-arm-executor/* publish
-            dropbox-autodelete-aarch64-arm-executor/* publish
-            nginx_proxy-aarch64-arm-executor/* publish
-            voipms-mms-aarch64-arm-executor/* publish
-            dropbox-sync-aarch64-arm-executor/* publish
-            rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor/* publish
-            tshark-armv7-arm-executor/* publish
-            oauth2-proxy-armv7-arm-executor/* publish
-            dropbox-autodelete-armv7-arm-executor/* publish
-            nginx_proxy-armv7-arm-executor/* publish
-            voipms-mms-armv7-arm-executor/* publish
-            dropbox-sync-armv7-arm-executor/* publish
-            rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor/* publish
-            tshark-i386-arm-executor/* publish
-            oauth2-proxy-i386-arm-executor/* publish
-            dropbox-autodelete-i386-arm-executor/* publish
-            nginx_proxy-i386-arm-executor/* publish
-            voipms-mms-i386-arm-executor/* publish
-            dropbox-sync-i386-arm-executor/* publish
+            rtl4332mqtt-interlogix-autodiscovery/*,build-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor,
+            tshark/*,build-tshark-aarch64-arm-executor,
+            oauth2-proxy/*,build-oauth2-proxy-aarch64-arm-executor,
+            dropbox-autodelete/*,build-dropbox-autodelete-aarch64-arm-executor,
+            nginx_proxy/*,build-nginx_proxy-aarch64-arm-executor,
+            voipms-mms/*,build-voipms-mms-aarch64-arm-executor,
+            dropbox-sync/*,build-dropbox-sync-aarch64-arm-executor,
+            rtl4332mqtt-interlogix-autodiscovery/*,build-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor,
+            tshark/*,build-tshark-amd64-amd-executor,
+            oauth2-proxy/*,build-oauth2-proxy-amd64-amd-executor,
+            dropbox-autodelete/*,build-dropbox-autodelete-amd64-amd-executor,
+            nginx_proxy/*,build-nginx_proxy-amd64-amd-executor,
+            voipms-mms/*,build-voipms-mms-amd64-amd-executor,
+            dropbox-sync/*,build-dropbox-sync-amd64-amd-executor,
+            rtl4332mqtt-interlogix-autodiscovery/*,build-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor,
+            tshark/*,build-tshark-armv7-arm-executor,
+            oauth2-proxy/*,build-oauth2-proxy-armv7-arm-executor,
+            dropbox-autodelete/*,build-dropbox-autodelete-armv7-arm-executor,
+            nginx_proxy/*,build-nginx_proxy-armv7-arm-executor,
+            voipms-mms/*,build-voipms-mms-armv7-arm-executor,
+            dropbox-sync/*,build-dropbox-sync-armv7-arm-executor,
+            rtl4332mqtt-interlogix-autodiscovery/*,build-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor,
+            tshark/*,build-tshark-i386-arm-executor,
+            oauth2-proxy/*,build-oauth2-proxy-i386-arm-executor,
+            dropbox-autodelete/*,build-dropbox-autodelete-i386-arm-executor,
+            nginx_proxy/*,build-nginx_proxy-i386-arm-executor,
+            voipms-mms/*,build-voipms-mms-i386-arm-executor,
+            dropbox-sync/*,build-dropbox-sync-i386-arm-executor,
+            rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor/*,publish,
+            tshark-amd64-amd-executor/*,publish,
+            oauth2-proxy-amd64-amd-executor/*,publish,
+            dropbox-autodelete-amd64-amd-executor/*,publish,
+            nginx_proxy-amd64-amd-executor/*,publish,
+            voipms-mms-amd64-amd-executor/*,publish,
+            dropbox-sync-amd64-amd-executor/*,publish,
+            rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor/*,publish,
+            tshark-aarch64-arm-executor/*,publish,
+            oauth2-proxy-aarch64-arm-executor/*,publish,
+            dropbox-autodelete-aarch64-arm-executor/*,publish,
+            nginx_proxy-aarch64-arm-executor/*,publish,
+            voipms-mms-aarch64-arm-executor/*,publish,
+            dropbox-sync-aarch64-arm-executor/*,publish,
+            rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor/*,publish,
+            tshark-armv7-arm-executor/*,publish,
+            oauth2-proxy-armv7-arm-executor/*,publish,
+            dropbox-autodelete-armv7-arm-executor/*,publish,
+            nginx_proxy-armv7-arm-executor/*,publish,
+            voipms-mms-armv7-arm-executor/*,publish,
+            dropbox-sync-armv7-arm-executor/*,publish,
+            rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor/*,publish,
+            tshark-i386-arm-executor/*,publish,
+            oauth2-proxy-i386-arm-executor/*,publish,
+            dropbox-autodelete-i386-arm-executor/*,publish,
+            nginx_proxy-i386-arm-executor/*,publish,
+            voipms-mms-i386-arm-executor/*,publish,
+            dropbox-sync-i386-arm-executor/*,publish,
