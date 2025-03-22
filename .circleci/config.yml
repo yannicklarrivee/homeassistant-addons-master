@@ -11,13 +11,15 @@ workflows:
           base-revision: master
           mapping: |
             <<#matrix.path>>
-            <<.>>/* build-<<.>>-<<#matrix.target-arch>><<.>>-<<#matrix.target-executor>><<.>> true
-            <</matrix.target-executor>>
-            <</matrix.target-arch>>
+              <<.>>/* build-<<.>>-aarch64-arm-executor true
+              <<.>>/* build-<<.>>-amd64-amd-executor true
+              <<.>>/* build-<<.>>-armv7-arm-executor true
+              <<.>>/* build-<<.>>-i386-arm-executor true
             <</matrix.path>>
             <<#publish.path>>
-            <<.>>-<<#publish.target-arch>><<.>>-<<#publish.target-executor>><<.>>/* publish true
-            <</publish.target-executor>>
-            <</publish.target-arch>>
+              <<.>>-aarch64-arm-executor/* publish true
+              <<.>>-amd64-amd-executor/* publish true
+              <<.>>-armv7-arm-executor/* publish true
+              <<.>>-i386-arm-executor/* publish true
             <</publish.path>>
           config-path: .circleci/continue_config.yml
