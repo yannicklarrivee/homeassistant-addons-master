@@ -1,42 +1,128 @@
 version: 2.1
-setup: true
+executors:
+  arm-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
+  amd-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: medium
 orbs:
-  path-filtering: circleci/path-filtering@1.1.0
-
+  docker: circleci/docker@2.1.3
+  yq: nikkei/rnikkei-yq@0.0.3
+  path-filtering: circleci/path-filtering@0.1.3
+jobs:
+  install-yq:
+    executor: arm-executor
+    steps:
+     - yq/install 
 workflows:
-  setup-workflow:
+  build-and-publish-addons-images:
     jobs:
-      - path-filtering/filter:
-          name: check-changed-paths
-          base-revision: master
-          mapping: |
-            rtl4332mqtt-interlogix-autodiscovery:
-              - aarch64
-              - amd64
-              - armv7
-              - i386
-            tshark:
-              - aarch64
-              - amd64
-              - armv7
-              - i386
-            oauth2-proxy:
-              - aarch64
-              - amd64
-              - armv7
-              - i386
-          config-path: .circleci/continue_config.yml
-
-workflows:
-  build-and-publish:
-    jobs:
-      - build:
+      - install-yq
+      - docker/publish:
           matrix:
             parameters:
-              path: ["rtl4332mqtt-interlogix-autodiscovery", "tshark", "oauth2-proxy"]
-              target-arch: ["aarch64", "amd64", "armv7", "i386"]
-      - publish:
-          matrix:
-            parameters:
-              path: ["rtl4332mqtt-interlogix-autodiscovery", "tshark", "oauth2-proxy"]
-              target-arch: ["aarch64", "amd64", "armv7", "i386"]
+              path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy,voipms-mms,dropbox-sync]
+              context: [aarch64, amd64, armv7, i386]
+              executor: [arm-executor, amd-executor]
+            exclude:
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: aarch64
+                executor: amd-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: armv7
+                executor: amd-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: amd64
+                executor: arm-executor
+              - path: rtl4332mqtt-interlogix-autodiscovery
+                context: i386
+                executor: arm-executor
+              - path: tshark
+                context: aarch64
+                executor: amd-executor
+              - path: tshark
+                context: armv7
+                executor: amd-executor
+              - path: tshark
+                context: amd64
+                executor: arm-executor
+              - path: tshark
+                context: i386
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: aarch64
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: armv7
+                executor: amd-executor
+              - path: oauth2-proxy
+                context: amd64
+                executor: arm-executor
+              - path: oauth2-proxy
+                context: i386
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: aarch64
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: armv7
+                executor: amd-executor
+              - path: dropbox-autodelete
+                context: amd64
+                executor: arm-executor
+              - path: dropbox-autodelete
+                context: i386
+                executor: arm-executor
+              - path: nginx_proxy
+                context: aarch64
+                executor: amd-executor
+              - path: nginx_proxy
+                context: armv7
+                executor: amd-executor
+              - path: nginx_proxy
+                context: amd64
+                executor: arm-executor
+              - path: nginx_proxy
+                context: i386
+                executor: arm-executor
+              - path: voipms-mms
+                context: aarch64
+                executor: amd-executor
+              - path: voipms-mms
+                context: armv7
+                executor: amd-executor
+              - path: voipms-mms
+                context: amd64
+                executor: arm-executor
+              - path: voipms-mms
+                context: i386
+                executor: arm-executor
+              - path: dropbox-sync
+                context: aarch64
+                executor: amd-executor
+              - path: dropbox-sync
+                context: armv7
+                executor: amd-executor
+              - path: dropbox-sync
+                context: amd64
+                executor: arm-executor
+              - path: dropbox-sync
+                context: i386
+                executor: arm-executor
+          pre-steps:
+            - checkout
+            - run:
+                command: echo 'export BASE_IMAGE=$(cat ./<< matrix.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
+            - checkout
+            - run:
+                command: echo 'export TAG=$(cat ./<< matrix.path >>/config.yml | yq '"'"'.version'"'"')' >> "$BASH_ENV"
+            - run:
+                command: echo $ARCH && echo $PLATFORM && echo $TAG
+          name: Publish << matrix.context >>-<< matrix.path >> addon
+          image: $DOCKER_LOGIN/$ARCH-<< matrix.path >>
+          extra_build_args: --build-arg BUILD_FROM=$BASE_IMAGE --platform $PLATFORM
+          docker-context: << matrix.path >>
+          tag: $TAG
