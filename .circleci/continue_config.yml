@@ -17,12 +17,12 @@ parameters:
 
 jobs:
   build:
-    executor: << parameters.target-arch >>-executor
     parameters:
       path:
         type: string
       target-arch:
         type: string
+    executor: << parameters.target-arch >>-executor
     steps:
       - checkout
       - run:
@@ -36,12 +36,12 @@ jobs:
             echo 'export BASE_IMAGE=$(cat ./<< parameters.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
             source "$BASH_ENV"
   publish:
-    executor: << parameters.target-arch >>-executor
     parameters:
       path:
         type: string
       target-arch:
         type: string
+    executor: << parameters.target-arch >>-executor
     steps:
       - run:
           name: Set TAG variable
