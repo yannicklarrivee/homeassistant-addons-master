@@ -10,18 +10,12 @@ workflows:
           name: check-changed-paths
           base-revision: master
           mapping: |
-            <<#matrix.path>>
-              <<#matrix.target-arch>>
-                <<#matrix.target-executor>>
-                  <<.>>/* build-<<.>>-<<../.>>-<<../../.>> true
-                <</matrix.target-executor>>
-              <</matrix.target-arch>>
-            <</matrix.path>>
-            <<#publish.path>>
-              <<#publish.target-arch>>
-                <<#publish.target-executor>>
-                  <<.>>-<<../.>>-<<../../.>>/* publish true
-                <</publish.target-executor>>
-              <</publish.target-arch>>
-            <</publish.path>>
+            matrix.path:
+              matrix.target-arch:
+                matrix.target-executor:
+                  "build-<< matrix.path >>-<< matrix.target-arch >>-<< matrix.target-executor >>": true
+            publish.path:
+              publish.target-arch:
+                publish.target-executor:
+                  "publish-<< publish.path >>-<< publish.target-arch >>-<< publish.target-executor >>": true
           config-path: .circleci/continue_config.yml
