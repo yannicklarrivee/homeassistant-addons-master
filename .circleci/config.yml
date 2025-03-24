@@ -10,12 +10,31 @@ workflows:
           name: check-changed-paths
           base-revision: master
           mapping: |
-            matrix.path:
-              matrix.target-arch:
-                matrix.target-executor:
-                  "build-<< matrix.path >>-<< matrix.target-arch >>-<< matrix.target-executor >>": true
-            publish.path:
-              publish.target-arch:
-                publish.target-executor:
-                  "publish-<< publish.path >>-<< publish.target-arch >>-<< publish.target-executor >>": true
+            rtl4332mqtt-interlogix-autodiscovery:
+              aarch64:
+                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor"
+                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-aarch64-amd-executor"
+              amd64:
+                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-amd64-arm-executor"
+                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor"
+              armv7:
+                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor"
+                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-armv7-amd-executor"
+              i386:
+                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor"
+                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-i386-amd-executor"
+            publish:
+              rtl4332mqtt-interlogix-autodiscovery:
+                aarch64:
+                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor"
+                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-aarch64-amd-executor"
+                amd64:
+                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-amd64-arm-executor"
+                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor"
+                armv7:
+                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor"
+                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-armv7-amd-executor"
+                i386:
+                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor"
+                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-i386-amd-executor"
           config-path: .circleci/continue_config.yml
