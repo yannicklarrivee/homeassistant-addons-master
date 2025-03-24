@@ -11,30 +11,32 @@ workflows:
           base-revision: master
           mapping: |
             rtl4332mqtt-interlogix-autodiscovery:
-              aarch64:
-                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor"
-                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-aarch64-amd-executor"
-              amd64:
-                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-amd64-arm-executor"
-                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor"
-              armv7:
-                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor"
-                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-armv7-amd-executor"
-              i386:
-                arm-executor: "build-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor"
-                amd-executor: "build-rtl4332mqtt-interlogix-autodiscovery-i386-amd-executor"
-            publish:
-              rtl4332mqtt-interlogix-autodiscovery:
-                aarch64:
-                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-aarch64-arm-executor"
-                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-aarch64-amd-executor"
-                amd64:
-                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-amd64-arm-executor"
-                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-amd64-amd-executor"
-                armv7:
-                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-armv7-arm-executor"
-                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-armv7-amd-executor"
-                i386:
-                  arm-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-i386-arm-executor"
-                  amd-executor: "publish-rtl4332mqtt-interlogix-autodiscovery-i386-amd-executor"
+              - aarch64
+              - amd64
+              - armv7
+              - i386
+            tshark:
+              - aarch64
+              - amd64
+              - armv7
+              - i386
+            oauth2-proxy:
+              - aarch64
+              - amd64
+              - armv7
+              - i386
           config-path: .circleci/continue_config.yml
+
+workflows:
+  build-and-publish:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              path: ["rtl4332mqtt-interlogix-autodiscovery", "tshark", "oauth2-proxy"]
+              target-arch: ["aarch64", "amd64", "armv7", "i386"]
+      - publish:
+          matrix:
+            parameters:
+              path: ["rtl4332mqtt-interlogix-autodiscovery", "tshark", "oauth2-proxy"]
+              target-arch: ["aarch64", "amd64", "armv7", "i386"]
