@@ -23,6 +23,7 @@ workflows:
       - install-yq
       - path-filtering/filter:
           name: filter-changes
+          base-revision: master  # Updated from 'main' to 'master'
           mapping: |
             rtl4332mqtt-interlogix-autodiscovery: rtl4332mqtt-interlogix-autodiscovery/**
             tshark: tshark/**
