@@ -1,0 +1,53 @@
+version: 2.1
+executors:
+  arm-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
+  amd-executor:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: medium
+
+parameters:
+  path:
+    type: string
+  target-arch:
+    type: string
+
+jobs:
+  build:
+    parameters:
+      path:
+        type: string
+      target-arch:
+        type: string
+    executor: << parameters.target-arch >>-executor
+    steps:
+      - checkout
+      - run:
+          name: Set ARCH and PLATFORM variables
+          command: |
+            echo "export ARCH=$(case << parameters.target-arch >> in aarch64) echo arm64 ;; amd64) echo amd64 ;; armv7) echo armhf ;; i386) echo i386 ;; esac)" >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - run:
+          name: Set BASE_IMAGE variable
+          command: |
+            echo 'export BASE_IMAGE=$(cat ./<< parameters.path >>/build.yml | yq '"'"'.build_from.[env(ARCH)]'"'"')' >> "$BASH_ENV"
+            source "$BASH_ENV"
+  publish:
+    parameters:
+      path:
+        type: string
+      target-arch:
+        type: string
+    executor: << parameters.target-arch >>-executor
+    steps:
+      - run:
+          name: Set TAG variable
+          command: |
+            echo "export TAG=$(git rev-parse --short HEAD)" >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - docker/publish:
+          name: Publish << parameters.target-arch >>-<< parameters.path >> addon
+          tag: << parameters.tag >>
