@@ -37,7 +37,7 @@ workflows:
             - filter-changes
           filters:
             branches:
-              only: main
+              only: master
           matrix:
             parameters:
               path: [rtl4332mqtt-interlogix-autodiscovery, tshark, oauth2-proxy, dropbox-autodelete, nginx_proxy, voipms-mms, dropbox-sync]
