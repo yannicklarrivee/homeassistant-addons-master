@@ -23,15 +23,15 @@ workflows:
       - install-yq
       - path-filtering/filter:
           name: filter-changes
-          base-revision: master  # Updated from 'main' to 'master'
+          base-revision: master
           mapping: |
-            rtl4332mqtt-interlogix-autodiscovery: rtl4332mqtt-interlogix-autodiscovery/**
-            tshark: tshark/**
-            oauth2-proxy: oauth2-proxy/**
-            dropbox-autodelete: dropbox-autodelete/**
-            nginx_proxy: nginx_proxy/**
-            voipms-mms: voipms-mms/**
-            dropbox-sync: dropbox-sync/**
+            rtl4332mqtt-interlogix-autodiscovery/**: rtl4332mqtt-interlogix-autodiscovery/**
+            tshark/**: tshark/**
+            oauth2-proxy/**: oauth2-proxy/**
+            dropbox-autodelete/**: dropbox-autodelete/**
+            nginx_proxy/**: nginx_proxy/**
+            voipms-mms/**: voipms-mms/**
+            dropbox-sync/**: dropbox-sync/**
           config-path: .circleci/config.yml
       - docker/publish:
           requires:
