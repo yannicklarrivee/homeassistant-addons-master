@@ -21,10 +21,26 @@ workflows:
   build-and-publish-addons-images:
     jobs:
       - install-yq
+      - path-filtering/filter:
+          name: filter-changes
+          mapping: |
+            rtl4332mqtt-interlogix-autodiscovery: rtl4332mqtt-interlogix-autodiscovery/**
+            tshark: tshark/**
+            oauth2-proxy: oauth2-proxy/**
+            dropbox-autodelete: dropbox-autodelete/**
+            nginx_proxy: nginx_proxy/**
+            voipms-mms: voipms-mms/**
+            dropbox-sync: dropbox-sync/**
+          config-path: .circleci/config.yml
       - docker/publish:
+          requires:
+            - filter-changes
+          filters:
+            branches:
+              only: main
           matrix:
             parameters:
-              path: [rtl4332mqtt-interlogix-autodiscovery,tshark,oauth2-proxy,dropbox-autodelete,nginx_proxy,voipms-mms,dropbox-sync]
+              path: [rtl4332mqtt-interlogix-autodiscovery, tshark, oauth2-proxy, dropbox-autodelete, nginx_proxy, voipms-mms, dropbox-sync]
               context: [aarch64, amd64, armv7, i386]
               executor: [arm-executor, amd-executor]
             exclude:
